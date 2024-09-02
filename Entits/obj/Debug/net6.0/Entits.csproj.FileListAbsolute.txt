@@ -10,3 +10,5 @@ C:\Users\MS\Desktop\CRUD\Entits\obj\Debug\net6.0\Entits.csproj.CoreCompileInputs
 C:\Users\MS\Desktop\CRUD\Entits\obj\Debug\net6.0\Entits.dll
 C:\Users\MS\Desktop\CRUD\Entits\obj\Debug\net6.0\ref\Entits.dll
 C:\Users\MS\Desktop\CRUD\Entits\obj\Debug\net6.0\Entits.pdb
+C:\Users\MS\Desktop\CRUD\Entits\bin\Debug\net6.0\Entits.runtimeconfig.json
+C:\Users\MS\Desktop\CRUD\Entits\obj\Debug\net6.0\Entits.genruntimeconfig.cache
