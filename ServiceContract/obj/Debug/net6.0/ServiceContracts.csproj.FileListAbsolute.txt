@@ -1,0 +1,5 @@
+C:\Users\MS\Desktop\CRUD\ServiceContract\obj\Debug\net6.0\ServiceContracts.csproj.AssemblyReference.cache
+C:\Users\MS\Desktop\CRUD\ServiceContract\obj\Debug\net6.0\ServiceContracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MS\Desktop\CRUD\ServiceContract\obj\Debug\net6.0\ServiceContracts.AssemblyInfoInputs.cache
+C:\Users\MS\Desktop\CRUD\ServiceContract\obj\Debug\net6.0\ServiceContracts.AssemblyInfo.cs
+C:\Users\MS\Desktop\CRUD\ServiceContract\obj\Debug\net6.0\ServiceContracts.csproj.CoreCompileInputs.cache

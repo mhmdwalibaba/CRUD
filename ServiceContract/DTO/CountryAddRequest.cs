@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using 
 
 namespace ServiceContracts.DTO
 {
     public  class CountryAddRequest
     {
-        public string? Country { get; set; }
+        public string? CountryName { get; set; }
+
+        public Country?
     }
 }
