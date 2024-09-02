@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Entits;
 namespace ServiceContracts.DTO
 {
     public class CountryResponse
@@ -34,5 +34,16 @@ namespace ServiceContracts.DTO
             return base.GetHashCode();
         }
     }
+    public static class ConvertCountryToCountryResponseExtention
+    {
+        public static CountryResponse? ToCountryResponse(this Country country)
+        {
+            return new CountryResponse()
+            {
+                CountryID = country.CountryID,
+                CountryName = country.CountryName
+            };
+        }
+    }
 }
-}
+
