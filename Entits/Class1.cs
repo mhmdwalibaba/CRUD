@@ -1,4 +1,4 @@
-﻿namespace ServiceContract
+﻿namespace Entits
 {
     public class Class1
     {
