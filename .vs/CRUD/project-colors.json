@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d14d7cc8-5184-450a-a6db-1b9dcf92e5a2": {
+      "ProjectGuid": "d14d7cc8-5184-450a-a6db-1b9dcf92e5a2",
+      "DisplayName": "CRUD",
+      "ColorIndex": 0
+    },
+    "27dfba05-eccf-4fe1-97fa-cc85b710b7c4": {
+      "ProjectGuid": "27dfba05-eccf-4fe1-97fa-cc85b710b7c4",
+      "DisplayName": "ServiceContracts",
+      "ColorIndex": 1
+    },
+    "616da1d1-4abf-4c3b-a054-0e4d1d55a208": {
+      "ProjectGuid": "616da1d1-4abf-4c3b-a054-0e4d1d55a208",
+      "DisplayName": "Services",
+      "ColorIndex": 2
+    },
+    "2ad75307-40aa-4a52-b30b-1b53996fdb42": {
+      "ProjectGuid": "2ad75307-40aa-4a52-b30b-1b53996fdb42",
+      "DisplayName": "CRUDTest",
+      "ColorIndex": 3
+    },
+    "054ad321-e320-4654-9b71-93e9119d7189": {
+      "ProjectGuid": "054ad321-e320-4654-9b71-93e9119d7189",
+      "DisplayName": "Entits",
+      "ColorIndex": 4
+    }
+  },
+  "NextColorIndex": 5
+}
