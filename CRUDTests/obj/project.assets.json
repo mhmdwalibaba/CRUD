@@ -72,16 +72,16 @@
           "lib/netstandard1.1/Fare.dll": {}
         }
       },
-      "FluentAssertions/6.0.0": {
+      "FluentAssertions/6.12.0": {
         "type": "package",
         "dependencies": {
           "System.Configuration.ConfigurationManager": "4.4.0"
         },
         "compile": {
-          "lib/netcoreapp3.0/FluentAssertions.dll": {}
+          "lib/net6.0/FluentAssertions.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.0/FluentAssertions.dll": {}
+          "lib/net6.0/FluentAssertions.dll": {}
         }
       },
       "Microsoft.CodeCoverage/16.11.0": {
@@ -2358,6 +2358,22 @@
           "bin/placeholder/IRepositoryContracts.dll": {}
         }
       },
+      "Repository/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Entits": "1.0.0",
+          "IRepositoryContracts": "1.0.0",
+          "ServiceContracts": "1.0.0",
+          "Services": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Repository.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Repository.dll": {}
+        }
+      },
       "ServiceContracts/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -2526,19 +2542,22 @@
         "lib/netstandard1.1/Fare.xml"
       ]
     },
-    "FluentAssertions/6.0.0": {
-      "sha512": "/nZSISO5mORW/z/MktODY6ncNuOjRF8OGf3gO3JWVoA293MC9ZQbdfPBDNKNMN/FcHghRQKyJakqABguBMtGQw==",
+    "FluentAssertions/6.12.0": {
+      "sha512": "ZXhHT2YwP9lajrwSKbLlFqsmCCvFJMoRSK9t7sImfnCyd0OB3MhgxdoMcVqxbq1iyxD6mD2fiackWmBb7ayiXQ==",
       "type": "package",
-      "path": "fluentassertions/6.0.0",
+      "path": "fluentassertions/6.12.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "FluentAssertions.png",
-        "fluentassertions.6.0.0.nupkg.sha512",
+        "fluentassertions.6.12.0.nupkg.sha512",
         "fluentassertions.nuspec",
         "lib/net47/FluentAssertions.dll",
         "lib/net47/FluentAssertions.pdb",
         "lib/net47/FluentAssertions.xml",
+        "lib/net6.0/FluentAssertions.dll",
+        "lib/net6.0/FluentAssertions.pdb",
+        "lib/net6.0/FluentAssertions.xml",
         "lib/netcoreapp2.1/FluentAssertions.dll",
         "lib/netcoreapp2.1/FluentAssertions.pdb",
         "lib/netcoreapp2.1/FluentAssertions.xml",
@@ -8026,6 +8045,11 @@
       "path": "../IRepositoryContracts/IRepositoryContracts.csproj",
       "msbuildProject": "../IRepositoryContracts/IRepositoryContracts.csproj"
     },
+    "Repository/1.0.0": {
+      "type": "project",
+      "path": "../Repository/Repository.csproj",
+      "msbuildProject": "../Repository/Repository.csproj"
+    },
     "ServiceContracts/1.0.0": {
       "type": "project",
       "path": "../ServiceContract/ServiceContracts.csproj",
@@ -8042,9 +8066,11 @@
       "AutoFixture >= 4.18.1",
       "Entits >= 1.0.0",
       "EntityFrameworkCoreMock.Moq >= 2.4.0",
-      "FluentAssertions >= 6.0.0",
+      "FluentAssertions >= 6.12.0",
+      "Microsoft.EntityFrameworkCore >= 6.0.33",
       "Microsoft.NET.Test.Sdk >= 16.11.0",
       "Moq >= 4.20.71",
+      "Repository >= 1.0.0",
       "ServiceContracts >= 1.0.0",
       "Services >= 1.0.0",
       "coverlet.collector >= 3.1.0",
@@ -8082,6 +8108,9 @@
             "C:\\Users\\MS\\Desktop\\CRUD\\Entits\\Entits.csproj": {
               "projectPath": "C:\\Users\\MS\\Desktop\\CRUD\\Entits\\Entits.csproj"
             },
+            "C:\\Users\\MS\\Desktop\\CRUD\\Repository\\Repository.csproj": {
+              "projectPath": "C:\\Users\\MS\\Desktop\\CRUD\\Repository\\Repository.csproj"
+            },
             "C:\\Users\\MS\\Desktop\\CRUD\\ServiceContract\\ServiceContracts.csproj": {
               "projectPath": "C:\\Users\\MS\\Desktop\\CRUD\\ServiceContract\\ServiceContracts.csproj"
             },
@@ -8111,7 +8140,11 @@
           },
           "FluentAssertions": {
             "target": "Package",
-            "version": "[6.0.0, )"
+            "version": "[6.12.0, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[6.0.33, )"
           },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
