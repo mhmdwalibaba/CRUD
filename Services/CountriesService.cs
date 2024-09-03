@@ -47,7 +47,11 @@ namespace Services
 
         public async Task<List<CountryResponse?>> GetAllCountries()
         {
-            throw new NotImplementedException();
+            List<Country> countries = await _countriesRepository.GetAllCountry();
+
+            List<CountryResponse?> countryResponses = countries.Select(temp => temp.ToCountryResponse()).ToList();
+
+            return countryResponses;
         }
 
         public async Task<CountryResponse?> GetCountryByCountryID(Guid countryId)
