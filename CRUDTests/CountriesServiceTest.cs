@@ -208,5 +208,38 @@ namespace CRUDTest
 
 
         #endregion
+
+        #region GetCountryByCountryId
+
+        [Fact]
+        //If we supply null as CountryID, it should return null as CountryResponse
+        public async Task GetCountryByCountryId_NullCountryID()
+        {
+            Guid? countryId = null;
+
+           //Act
+            CountryResponse? countryResposne= await  _countriesService.GetCountryByCountryID(countryId);
+
+            //Assert
+            countryResposne.Should().BeNull();
+            
+
+        }
+        //if we supply valid Coutnryid,it should Return coutnry with given on Countryid
+        public async Task GetCountryByCountryId_ValidCountryId()
+        {
+            Country country = _fixture.Create<Country>();
+
+            CountryResponse? countryResponse = country.ToCountryResponse();
+
+            //Act
+            CountryResponse? actual_country_response_get = await _countriesService.GetCountryByCountryID(country.CountryID);
+
+            //Assert
+            actual_country_response_get.Should().Be(countryResponse);
+            
+        }
+
+        #endregion
     }
 }

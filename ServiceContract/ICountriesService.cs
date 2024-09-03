@@ -19,7 +19,7 @@ namespace ServiceContracts
         /// </summary>
         /// <param name="countryId">CountryID (guid) to Search</param>
         /// <returns>maching country as country object Response</returns>
-        public Task<CountryResponse?> GetCountryByCountryID(Guid countryId);
+        public Task<CountryResponse?> GetCountryByCountryID(Guid? countryId);
         /// <summary>
         /// Return all country of country list
         /// </summary>

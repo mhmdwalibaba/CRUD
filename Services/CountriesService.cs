@@ -54,9 +54,13 @@ namespace Services
             return countryResponses;
         }
 
-        public async Task<CountryResponse?> GetCountryByCountryID(Guid countryId)
+        public async Task<CountryResponse?> GetCountryByCountryID(Guid? countryId)
         {
-            throw new NotImplementedException();
+            if (countryId == null)
+                return null;
+            Country? country = await _countriesRepository.GetCountryByCountryId(countryId.Value);
+            return country.ToCountryResponse();
+
         }
     }
 }
