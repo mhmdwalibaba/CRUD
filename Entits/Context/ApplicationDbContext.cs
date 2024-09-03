@@ -9,6 +9,7 @@ namespace Entits
     public class ApplicationDbContext:DbContext
     {
         public virtual DbSet<Country> countries { get; set; }
+        public virtual DbSet<Person> persons { get; set; } 
 
         public ApplicationDbContext(DbContextOptions options):base(options)
         {
@@ -20,6 +21,7 @@ namespace Entits
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Country>().ToTable("countries");
+            modelBuilder.Entity<Person>().ToTable("Person");
 
             //seed to Countries
             string countriesJson = System.IO.File.ReadAllText("countries.json");
@@ -29,6 +31,22 @@ namespace Entits
             {
                 modelBuilder.Entity<Country>().HasData(country);
             }
+
+            //Seed to persons
+            string PerosnJson = System.IO.File.ReadAllText("persons.json");
+            List<Person> persons = System.Text.Json.JsonSerializer.Deserialize<List<Person>>(PerosnJson);
+
+            foreach (Person person in persons)
+                modelBuilder.Entity<Person>().HasData(person);
+
+            //Table Relations
+            modelBuilder.Entity<Person>(entity =>
+            {
+                entity.HasOne<Country>(c => c.Country)
+                   .WithMany(p => p.Persons)
+                   .HasForeignKey(p => p.CountryID);
+            });
         }
+   
     }
 }
