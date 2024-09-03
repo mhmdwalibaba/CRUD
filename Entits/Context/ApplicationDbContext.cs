@@ -8,7 +8,7 @@ namespace Entits
 {
     public class ApplicationDbContext:DbContext
     {
-        public DbSet<Country> countries { get; set; }
+        public virtual DbSet<Country> countries { get; set; }
 
         public ApplicationDbContext(DbContextOptions options):base(options)
         {
