@@ -9,6 +9,7 @@
       "Services/1.0.0": {
         "dependencies": {
           "Entits": "1.0.0",
+          "IRepositoryContracts": "1.0.0",
           "ServiceContracts": "1.0.0"
         },
         "runtime": {
@@ -1262,6 +1263,14 @@
           "Entits.dll": {}
         }
       },
+      "IRepositoryContracts/1.0.0": {
+        "dependencies": {
+          "Entits": "1.0.0"
+        },
+        "runtime": {
+          "IRepositoryContracts.dll": {}
+        }
+      },
       "ServiceContracts/1.0.0": {
         "dependencies": {
           "Entits": "1.0.0"
@@ -2133,6 +2142,11 @@
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
     },
     "Entits/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "IRepositoryContracts/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

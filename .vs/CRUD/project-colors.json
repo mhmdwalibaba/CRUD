@@ -25,7 +25,22 @@
       "ProjectGuid": "054ad321-e320-4654-9b71-93e9119d7189",
       "DisplayName": "Entits",
       "ColorIndex": 4
+    },
+    "e0ff92fe-34be-4b6b-bc47-6c2d92ce0c1f": {
+      "ProjectGuid": "e0ff92fe-34be-4b6b-bc47-6c2d92ce0c1f",
+      "DisplayName": "CRUDTests",
+      "ColorIndex": 5
+    },
+    "391c1d53-508c-443a-9be1-d395d438e27f": {
+      "ProjectGuid": "391c1d53-508c-443a-9be1-d395d438e27f",
+      "DisplayName": "IRepositoryContracts",
+      "ColorIndex": 6
+    },
+    "bbbb6f7f-229b-4f24-be49-469a6103d1df": {
+      "ProjectGuid": "bbbb6f7f-229b-4f24-be49-469a6103d1df",
+      "DisplayName": "Repository",
+      "ColorIndex": 7
     }
   },
-  "NextColorIndex": 5
+  "NextColorIndex": 8
 }

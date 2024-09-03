@@ -3,8 +3,10 @@ C:\Users\MS\Desktop\CRUD\Services\bin\Debug\net6.0\Services.dll
 C:\Users\MS\Desktop\CRUD\Services\bin\Debug\net6.0\ref\Services.dll
 C:\Users\MS\Desktop\CRUD\Services\bin\Debug\net6.0\Services.pdb
 C:\Users\MS\Desktop\CRUD\Services\bin\Debug\net6.0\Entits.dll
+C:\Users\MS\Desktop\CRUD\Services\bin\Debug\net6.0\IRepositoryContracts.dll
 C:\Users\MS\Desktop\CRUD\Services\bin\Debug\net6.0\ServiceContracts.dll
 C:\Users\MS\Desktop\CRUD\Services\bin\Debug\net6.0\Entits.pdb
+C:\Users\MS\Desktop\CRUD\Services\bin\Debug\net6.0\IRepositoryContracts.pdb
 C:\Users\MS\Desktop\CRUD\Services\bin\Debug\net6.0\ServiceContracts.pdb
 C:\Users\MS\Desktop\CRUD\Services\obj\Debug\net6.0\Services.csproj.AssemblyReference.cache
 C:\Users\MS\Desktop\CRUD\Services\obj\Debug\net6.0\Services.GeneratedMSBuildEditorConfig.editorconfig

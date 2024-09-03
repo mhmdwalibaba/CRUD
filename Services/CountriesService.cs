@@ -1,18 +1,19 @@
 ﻿using Entits;
 using ServiceContracts;
 using ServiceContracts.DTO;
+using IRepositoryContracts;
 
 namespace Services
 {
     public class CountriesService : ICountriesService
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ICountriesRepository _countriesRepository;
 
-        public CountriesService(ApplicationDbContext db)
+        public CountriesService(ICountriesRepository countriesRepository)
         {
-            _db = db;
+            _countriesRepository = countriesRepository;
         }
-        public CountryResponse? AddCountry(CountryAddRequest countryAddRequest)
+        public async Task<CountryResponse?> AddCountry(CountryAddRequest countryAddRequest)
         {
             //Check if "countryAddRequest" is not null.
             if (countryAddRequest == null)
@@ -26,7 +27,7 @@ namespace Services
                 throw new ArgumentException(nameof(countryAddRequest.CountryName));
             }
 
-            if (_db.countries.Count(temp => temp.CountryName == countryAddRequest.CountryName) != 0)
+            if (await _countriesRepository.GetCountryByCountryName(countryAddRequest.CountryName)!=null)
             {
                 throw new ArgumentException();
             }
@@ -37,19 +38,19 @@ namespace Services
             country.CountryID = Guid.NewGuid();
 
             //Then add it into dataBase
-            _db.countries.Add(country);
-            _db.SaveChanges();
+            await _countriesRepository.AddCountry(country);
+            
             //Return CountryResponse object with generated CountryID
             CountryResponse? countryResponse = country.ToCountryResponse();
             return countryResponse;
         }
 
-        public List<CountryResponse?> GetAllCountries()
+        public async Task<List<CountryResponse?>> GetAllCountries()
         {
             throw new NotImplementedException();
         }
 
-        public CountryResponse? GetCountryByCountryID(Guid countryId)
+        public async Task<CountryResponse?> GetCountryByCountryID(Guid countryId)
         {
             throw new NotImplementedException();
         }
