@@ -1988,6 +1988,21 @@
         "runtime": {
           "bin/placeholder/ServiceContracts.dll": {}
         }
+      },
+      "Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Entits": "1.0.0",
+          "IRepositoryContracts": "1.0.0",
+          "ServiceContracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Services.dll": {}
+        }
       }
     }
   },
@@ -6842,13 +6857,19 @@
       "type": "project",
       "path": "../ServiceContract/ServiceContracts.csproj",
       "msbuildProject": "../ServiceContract/ServiceContracts.csproj"
+    },
+    "Services/1.0.0": {
+      "type": "project",
+      "path": "../Services/Services.csproj",
+      "msbuildProject": "../Services/Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Entits >= 1.0.0",
       "IRepositoryContracts >= 1.0.0",
-      "ServiceContracts >= 1.0.0"
+      "ServiceContracts >= 1.0.0",
+      "Services >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -6857,11 +6878,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MS\\Desktop\\CRUD\\Services\\Services.csproj",
-      "projectName": "Services",
-      "projectPath": "C:\\Users\\MS\\Desktop\\CRUD\\Services\\Services.csproj",
+      "projectUniqueName": "C:\\Users\\MS\\Desktop\\CRUD\\Repository\\Repository.csproj",
+      "projectName": "Repository",
+      "projectPath": "C:\\Users\\MS\\Desktop\\CRUD\\Repository\\Repository.csproj",
       "packagesPath": "C:\\Users\\MS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MS\\Desktop\\CRUD\\Services\\obj\\",
+      "outputPath": "C:\\Users\\MS\\Desktop\\CRUD\\Repository\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\MS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6886,6 +6907,9 @@
             },
             "C:\\Users\\MS\\Desktop\\CRUD\\ServiceContract\\ServiceContracts.csproj": {
               "projectPath": "C:\\Users\\MS\\Desktop\\CRUD\\ServiceContract\\ServiceContracts.csproj"
+            },
+            "C:\\Users\\MS\\Desktop\\CRUD\\Services\\Services.csproj": {
+              "projectPath": "C:\\Users\\MS\\Desktop\\CRUD\\Services\\Services.csproj"
             }
           }
         }

@@ -2345,6 +2345,19 @@
           "bin/placeholder/Entits.dll": {}
         }
       },
+      "IRepositoryContracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Entits": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/IRepositoryContracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/IRepositoryContracts.dll": {}
+        }
+      },
       "ServiceContracts/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -2363,6 +2376,7 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Entits": "1.0.0",
+          "IRepositoryContracts": "1.0.0",
           "ServiceContracts": "1.0.0"
         },
         "compile": {
@@ -8006,6 +8020,11 @@
       "type": "project",
       "path": "../Entits/Entits.csproj",
       "msbuildProject": "../Entits/Entits.csproj"
+    },
+    "IRepositoryContracts/1.0.0": {
+      "type": "project",
+      "path": "../IRepositoryContracts/IRepositoryContracts.csproj",
+      "msbuildProject": "../IRepositoryContracts/IRepositoryContracts.csproj"
     },
     "ServiceContracts/1.0.0": {
       "type": "project",

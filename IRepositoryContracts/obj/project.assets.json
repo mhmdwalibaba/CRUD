@@ -1962,32 +1962,6 @@
         "runtime": {
           "bin/placeholder/Entits.dll": {}
         }
-      },
-      "IRepositoryContracts/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "Entits": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/IRepositoryContracts.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/IRepositoryContracts.dll": {}
-        }
-      },
-      "ServiceContracts/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "Entits": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/ServiceContracts.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ServiceContracts.dll": {}
-        }
       }
     }
   },
@@ -6832,23 +6806,11 @@
       "type": "project",
       "path": "../Entits/Entits.csproj",
       "msbuildProject": "../Entits/Entits.csproj"
-    },
-    "IRepositoryContracts/1.0.0": {
-      "type": "project",
-      "path": "../IRepositoryContracts/IRepositoryContracts.csproj",
-      "msbuildProject": "../IRepositoryContracts/IRepositoryContracts.csproj"
-    },
-    "ServiceContracts/1.0.0": {
-      "type": "project",
-      "path": "../ServiceContract/ServiceContracts.csproj",
-      "msbuildProject": "../ServiceContract/ServiceContracts.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Entits >= 1.0.0",
-      "IRepositoryContracts >= 1.0.0",
-      "ServiceContracts >= 1.0.0"
+      "Entits >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -6857,11 +6819,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MS\\Desktop\\CRUD\\Services\\Services.csproj",
-      "projectName": "Services",
-      "projectPath": "C:\\Users\\MS\\Desktop\\CRUD\\Services\\Services.csproj",
+      "projectUniqueName": "C:\\Users\\MS\\Desktop\\CRUD\\IRepositoryContracts\\IRepositoryContracts.csproj",
+      "projectName": "IRepositoryContracts",
+      "projectPath": "C:\\Users\\MS\\Desktop\\CRUD\\IRepositoryContracts\\IRepositoryContracts.csproj",
       "packagesPath": "C:\\Users\\MS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MS\\Desktop\\CRUD\\Services\\obj\\",
+      "outputPath": "C:\\Users\\MS\\Desktop\\CRUD\\IRepositoryContracts\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\MS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6880,12 +6842,6 @@
           "projectReferences": {
             "C:\\Users\\MS\\Desktop\\CRUD\\Entits\\Entits.csproj": {
               "projectPath": "C:\\Users\\MS\\Desktop\\CRUD\\Entits\\Entits.csproj"
-            },
-            "C:\\Users\\MS\\Desktop\\CRUD\\IRepositoryContracts\\IRepositoryContracts.csproj": {
-              "projectPath": "C:\\Users\\MS\\Desktop\\CRUD\\IRepositoryContracts\\IRepositoryContracts.csproj"
-            },
-            "C:\\Users\\MS\\Desktop\\CRUD\\ServiceContract\\ServiceContracts.csproj": {
-              "projectPath": "C:\\Users\\MS\\Desktop\\CRUD\\ServiceContract\\ServiceContracts.csproj"
             }
           }
         }
