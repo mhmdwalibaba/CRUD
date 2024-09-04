@@ -18,12 +18,12 @@ namespace CRUDTests
     {
         private readonly IPersonsService _personsService;
         private readonly Fixture _fixture;
-        private readonly Mock<IPersonsRepository> _personsRepostoryMock;
+        private readonly Mock<IPersonsRepository> _personsRepositoryMock;
         private readonly IPersonsRepository _personsRepository;
         public PersonsServiceTest()
         {
-            _personsRepostoryMock=new Mock<IPersonsRepository>();
-            _personsRepository = _personsRepostoryMock.Object;
+            _personsRepositoryMock=new Mock<IPersonsRepository>();
+            _personsRepository = _personsRepositoryMock.Object;
 
             _personsService = new PersonsService(_personsRepository);
 
@@ -76,7 +76,7 @@ namespace CRUDTests
             Person? person = personAddRequest.ToPerson();
             PersonResponse? person_response_expected = person.ToPersonResponse();
 
-            _personsRepostoryMock.Setup(temp => temp.AddPerson(It.IsAny<Person>()))
+            _personsRepositoryMock.Setup(temp => temp.AddPerson(It.IsAny<Person>()))
                 .ReturnsAsync(person);
             
             //Act
@@ -88,6 +88,61 @@ namespace CRUDTests
             person_response_from_add.Should().Be(person_response_expected);
         }
 
+        #endregion
+
+        #region GetAllPerson
+
+        [Fact]
+        //if List of Empty,should Return Empty
+        public async Task GetAllPerson_EmptyList()
+        {
+            //Arrange
+            List<Person> persons_list_Empty = new List<Person>();
+
+            _personsRepositoryMock
+                .Setup(temp => temp.GetAllPerson())
+                .ReturnsAsync(persons_list_Empty);
+            //Act
+            List<PersonResponse?> personResponses=await _personsService.GetAllPersons();
+            //Assert
+            personResponses.Should().BeEmpty();
+        }
+        [Fact]
+        //First, we will add few persons; and then when we call GetAllPersons(), it should return the same persons that were added
+        public async Task GetAllPersons_WithFewPersons_ToBeSuccessfull()
+        {
+            //Arrange
+            List<Person> persons = new List<Person>() {
+
+                _fixture.Build<Person>()
+                .With(temp => temp.Email, "someone_1@example.com")
+                .With(temp => temp.Country, null as Country)
+                .Create(),
+
+                _fixture.Build<Person>()
+                .With(temp => temp.Email, "someone_2@example.com")
+                .With(temp => temp.Country, null as Country)
+                .Create(),
+
+                _fixture.Build<Person>()
+               .With(temp => temp.Email, "someone_3@example.com")
+               .With(temp => temp.Country, null as Country)
+               .Create()
+             };
+
+             _personsRepositoryMock
+                .Setup(temp => temp.GetAllPerson())
+                .ReturnsAsync(persons);
+
+            List<PersonResponse> person_response_list_expected = persons.Select(temp => temp.ToPersonResponse()).ToList();
+
+            //Act
+            List<PersonResponse>? persons_list_get = await _personsService.GetAllPersons();
+
+            //Assert
+            persons_list_get.Should().BeEquivalentTo(person_response_list_expected);
+
+        }
         #endregion
     }
 }

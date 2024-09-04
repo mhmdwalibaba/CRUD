@@ -17,6 +17,7 @@ namespace Services
         {
             _personsRepository = personsRepository;
         }
+
         public async Task<PersonResponse?> AddPerson(PersonAddRequest personAddRequest)
         {
             if(personAddRequest == null)
@@ -40,9 +41,12 @@ namespace Services
             return person.ToPersonResponse();
         }
 
-        public Task<List<PersonResponse>?> GetAllPersons()
+        public async Task<List<PersonResponse>?> GetAllPersons()
         {
-            throw new NotImplementedException();
+            List<Person>? persons = await _personsRepository.GetAllPerson();
+            List<PersonResponse>? personResponses = persons.Select(temp => temp.ToPersonResponse()).ToList();
+
+            return personResponses;
         }
 
         public Task<PersonResponse?> GetPersonByPersonID(Guid? perosnID)
