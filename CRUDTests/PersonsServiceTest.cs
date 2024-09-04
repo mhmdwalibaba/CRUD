@@ -144,5 +144,48 @@ namespace CRUDTests
 
         }
         #endregion
+
+        #region GetPersonByPersonID
+        [Fact]
+        //When We supply null PersonId ,ShouldBe Return Null
+        public async Task GetPersonByPersonID_NullPersonId()
+        {
+            Guid? personID = null;
+
+            //Act
+            PersonResponse? personResponse = await _personsService.GetPersonByPersonID(personID);
+
+            //Assert
+            personResponse.Should().BeNull();
+        }
+        [Fact]
+        // //If we supply a valid person id, it should return the valid person details as PersonResponse object
+        public async Task GetPersonByPersonID_ValidPersonID_toBeSuccessFull()
+        {
+            //Arrange
+            Person person = _fixture
+                .Build<Person>()
+                .With(temp => temp.Email, "email@sample.com")
+                .With(temp => temp.Country, null as Country)
+                .Create();
+
+            PersonResponse person_response_expected = person.ToPersonResponse();
+
+            _personsRepositoryMock
+                .Setup(temp => temp.GetPersonByPersonID(It.IsAny<Guid>()))
+                .ReturnsAsync(person);
+
+
+            //Act
+            PersonResponse? person_response_from_get = await _personsService.GetPersonByPersonID(person.PersonID);
+
+
+            //Assert
+            person_response_from_get.Should().Be(person_response_expected);
+        }
+
+
+        #endregion
+
     }
 }

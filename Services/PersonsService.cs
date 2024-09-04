@@ -49,9 +49,14 @@ namespace Services
             return personResponses;
         }
 
-        public Task<PersonResponse?> GetPersonByPersonID(Guid? perosnID)
+        public async Task<PersonResponse?> GetPersonByPersonID(Guid? personID)
         {
-            throw new NotImplementedException();
+            if (personID == null)
+                return null;
+
+            Person? person = await _personsRepository.GetPersonByPersonID(personID);
+
+            return person.ToPersonResponse();
         }
     }
 }
