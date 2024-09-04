@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,5 +27,11 @@ namespace IRepositoryContracts
         /// </summary>
         /// <returns>List of AllPersons Stored in DataStore</returns>
         Task<List<Person>?> GetAllPerson();
+        /// <summary>
+        /// Returns all person objects based on the given expression
+        /// </summary>
+        /// <param name="predicate">LINQ expression to check</param>
+        /// <returns>All matching persons with given condition</returns>
+        Task<List<Person>> GetFiltredPerson(Expression<Func<Person, bool>> predicate);
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using AutoFixture;
@@ -184,6 +185,81 @@ namespace CRUDTests
             person_response_from_get.Should().Be(person_response_expected);
         }
 
+
+        #endregion
+
+        #region GetFiltredPerson
+
+        [Fact]
+        //If the search text is empty and search by is "PersonName", it should return all persons
+        public async Task GetFiltredPerson_EmptySearchText()
+           {
+            //Arrange
+            List<Person> persons = new List<Person>() {
+             _fixture.Build<Person>()
+             .With(temp => temp.Email, "someone_1@example.com")
+             .With(temp => temp.Country, null as Country)
+             .Create(),
+
+            _fixture.Build<Person>()
+            .With(temp => temp.Email, "someone_2@example.com")
+            .With(temp => temp.Country, null as Country)
+            .Create(),
+
+             _fixture.Build<Person>()
+             .With(temp => temp.Email, "someone_3@example.com")
+             .With(temp => temp.Country, null as Country)
+             .Create()
+             };
+
+            List<PersonResponse?> person_list_from_exepted = persons.Select(temp => temp.ToPersonResponse()).ToList();
+
+            _personsRepositoryMock
+                .Setup(temp => temp.GetFiltredPerson(It.IsAny<Expression<Func<Person, bool>>>()))
+                .ReturnsAsync(persons);
+
+
+            //Act
+            List<PersonResponse?> person_list_from_search = await _personsService.GetFiltredPerson(nameof(Person.PersonName), null);
+
+            //Assert
+            person_list_from_search.Should().BeEquivalentTo(person_list_from_exepted);
+        }
+        [Fact]
+        //First we will add few persons; and then we will search based on person name with some search string. It should return the matching persons
+        public async Task GetFiltredPerson_ByPersonName()
+        {
+            //Arrange
+            List<Person> persons = new List<Person>() {
+             _fixture.Build<Person>()
+             .With(temp => temp.Email, "someone_1@example.com")
+             .With(temp => temp.Country, null as Country)
+             .Create(),
+
+            _fixture.Build<Person>()
+            .With(temp => temp.Email, "someone_2@example.com")
+            .With(temp => temp.Country, null as Country)
+            .Create(),
+
+             _fixture.Build<Person>()
+             .With(temp => temp.Email, "someone_3@example.com")
+             .With(temp => temp.Country, null as Country)
+             .Create()
+             };
+
+            List<PersonResponse?> person_list_from_exepted = persons.Select(temp => temp.ToPersonResponse()).ToList();
+
+            _personsRepositoryMock
+                .Setup(temp => temp.GetFiltredPerson(It.IsAny<Expression<Func<Person, bool>>>()))
+                .ReturnsAsync(persons);
+
+
+            //Act
+            List<PersonResponse?> person_list_from_search = await _personsService.GetFiltredPerson(nameof(Person.PersonName), "sa");
+
+            //Assert
+            person_list_from_search.Should().BeEquivalentTo(person_list_from_exepted);
+        }
 
         #endregion
 

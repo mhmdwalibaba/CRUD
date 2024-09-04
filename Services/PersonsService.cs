@@ -49,6 +49,40 @@ namespace Services
             return personResponses;
         }
 
+        public async Task<List<PersonResponse>?> GetFiltredPerson(string? searchBy, string? searchString)
+        {
+            List<Person> persons = searchBy switch
+            {
+                nameof(PersonResponse.PersonName)=>
+                await _personsRepository
+                .GetFiltredPerson(temp => temp.PersonName.Contains(searchString)),
+
+                nameof(PersonResponse.Email) =>
+                await _personsRepository
+                .GetFiltredPerson(temp => temp.Email.Contains(searchString)),
+
+                nameof(PersonResponse.DateOfBirth) =>
+                await _personsRepository.GetFiltredPerson(temp =>
+                temp.DateOfBirth.Value.ToString("dd MMMM yyyy").Contains(searchString)),
+
+
+                nameof(PersonResponse.Gender) =>
+                 await _personsRepository.GetFiltredPerson(temp =>
+                 temp.Gender.Contains(searchString)),
+
+                nameof(PersonResponse.CountryID) =>
+                 await _personsRepository.GetFiltredPerson(temp =>
+                 temp.Country.CountryName.Contains(searchString)),
+
+                nameof(PersonResponse.Address) =>
+                await _personsRepository.GetFiltredPerson(temp =>
+                temp.Address.Contains(searchString)),
+
+                _ => await _personsRepository.GetAllPerson()
+            };
+            return persons.Select(temp => temp.ToPersonResponse()).ToList();
+        }
+
         public async Task<PersonResponse?> GetPersonByPersonID(Guid? personID)
         {
             if (personID == null)

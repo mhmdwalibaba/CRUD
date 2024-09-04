@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Entits;
 using IRepositoryContracts;
-
-
+using Microsoft.EntityFrameworkCore;
 
 namespace Repository
 {
@@ -25,14 +25,21 @@ namespace Repository
             return person;
         }
 
-        public Task<List<Person>?> GetAllPerson()
+        public async Task<List<Person>?> GetAllPerson()
         {
-            throw new NotImplementedException();
+            List<Person> persons = await _db.persons.Include("Country").ToListAsync();
+
+            return persons;
         }
 
-        public Task<Person?> GetPersonByPersonID(Guid? personID)
+        public async Task<List<Person>> GetFiltredPerson(Expression<Func<Person, bool>> predicate)
         {
-            throw new NotImplementedException();
+           return await _db.persons.Include("Country").Where(predicate).ToListAsync();
+        }
+
+        public async Task<Person?> GetPersonByPersonID(Guid? personID)
+        {
+            return await _db.persons.Include("Country").FirstOrDefaultAsync(temp => temp.PersonID == personID);
         }
     }
 }
