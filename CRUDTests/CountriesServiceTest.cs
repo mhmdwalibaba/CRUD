@@ -32,7 +32,12 @@ namespace CRUDTest
             _countriesRepository = _countriesRepositoryMock.Object;
 
             _countriesService = new CountriesService(_countriesRepository);
+
+
             _fixture = new Fixture();
+            
+
+
         }
 
         #region CountryAddRequest
@@ -43,8 +48,9 @@ namespace CRUDTest
             //Arrange
             CountryAddRequest? countryAddRequest = null;
 
-
+           
             Country country = _fixture.Build<Country>()
+                 .With(temp => temp.Persons, null as List<Person>)
                  .Create();
 
             _countriesRepositoryMock
@@ -71,7 +77,12 @@ namespace CRUDTest
             CountryAddRequest? countryAddRequest = _fixture.Build<CountryAddRequest>()
                 .With(temp => temp.CountryName, null as string)
                 .Create();
-            Country? country = _fixture.Create<Country>();
+
+            Country? country = _fixture
+                .Build<Country>()
+                .With(temp => temp.Persons, null as List<Person>)
+                .Create();
+                
 
             _countriesRepositoryMock.Setup(temp => temp.AddCountry(It.IsAny<Country>()))
                 .ReturnsAsync(country);
@@ -187,8 +198,8 @@ namespace CRUDTest
         {
             List<Country> country_list = new List<Country>()
             {
-                _fixture.Create<Country>(),
-                _fixture.Create<Country>()
+                _fixture.Build<Country>().With(temp => temp.Persons, null as List<Person>).Create(),
+                _fixture.Build<Country>().With(temp => temp.Persons, null as List<Person>).Create(),
             };
             List<CountryResponse?> country_list_Response = country_list.Select(temp => temp.ToCountryResponse()).ToList();
 
