@@ -64,3 +64,14 @@ C:\Users\MS\Desktop\CRUD\CRUD\bin\Debug\net6.0\EntityFrameworkCoreMock.Moq.dll
 C:\Users\MS\Desktop\CRUD\CRUD\bin\Debug\net6.0\EntityFrameworkCoreMock.Shared.dll
 C:\Users\MS\Desktop\CRUD\CRUD\bin\Debug\net6.0\Moq.dll
 C:\Users\MS\Desktop\CRUD\CRUD\bin\Debug\net6.0\persons.json
+C:\Users\MS\Desktop\CRUD\CRUD\bin\Debug\net6.0\CRUD.staticwebassets.runtime.json
+C:\Users\MS\Desktop\CRUD\CRUD\bin\Debug\net6.0\ServiceContracts.dll
+C:\Users\MS\Desktop\CRUD\CRUD\bin\Debug\net6.0\ServiceContracts.pdb
+C:\Users\MS\Desktop\CRUD\CRUD\obj\Debug\net6.0\CRUD.RazorAssemblyInfo.cache
+C:\Users\MS\Desktop\CRUD\CRUD\obj\Debug\net6.0\CRUD.RazorAssemblyInfo.cs
+C:\Users\MS\Desktop\CRUD\CRUD\bin\Debug\net6.0\IRepositoryContracts.dll
+C:\Users\MS\Desktop\CRUD\CRUD\bin\Debug\net6.0\Repository.dll
+C:\Users\MS\Desktop\CRUD\CRUD\bin\Debug\net6.0\Services.dll
+C:\Users\MS\Desktop\CRUD\CRUD\bin\Debug\net6.0\IRepositoryContracts.pdb
+C:\Users\MS\Desktop\CRUD\CRUD\bin\Debug\net6.0\Repository.pdb
+C:\Users\MS\Desktop\CRUD\CRUD\bin\Debug\net6.0\Services.pdb

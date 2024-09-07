@@ -13,6 +13,8 @@ using ServiceContracts.DTO;
 using Xunit;
 using Entits;
 using IRepositoryContracts;
+using ServiceContracts.Enum;
+
 namespace CRUDTests
 {
     public class PersonsServiceTest
@@ -23,7 +25,7 @@ namespace CRUDTests
         private readonly IPersonsRepository _personsRepository;
         public PersonsServiceTest()
         {
-            _personsRepositoryMock=new Mock<IPersonsRepository>();
+            _personsRepositoryMock = new Mock<IPersonsRepository>();
             _personsRepository = _personsRepositoryMock.Object;
 
             _personsService = new PersonsService(_personsRepository);
@@ -63,7 +65,7 @@ namespace CRUDTests
                   await _personsService.AddPerson(personAddRequest);
               };
             //Assert
-           await action.Should().ThrowAsync<ArgumentException>();
+            await action.Should().ThrowAsync<ArgumentException>();
         }
         [Fact]
         //if We supply duplicate PersonAddRequest , shouldBe Throw ArgumentExeption
@@ -79,7 +81,7 @@ namespace CRUDTests
 
             _personsRepositoryMock.Setup(temp => temp.AddPerson(It.IsAny<Person>()))
                 .ReturnsAsync(person);
-            
+
             //Act
             PersonResponse? person_response_from_add = await _personsService.AddPerson(personAddRequest);
 
@@ -104,7 +106,7 @@ namespace CRUDTests
                 .Setup(temp => temp.GetAllPerson())
                 .ReturnsAsync(persons_list_Empty);
             //Act
-            List<PersonResponse?> personResponses=await _personsService.GetAllPersons();
+            List<PersonResponse?> personResponses = await _personsService.GetAllPersons();
             //Assert
             personResponses.Should().BeEmpty();
         }
@@ -131,9 +133,9 @@ namespace CRUDTests
                .Create()
              };
 
-             _personsRepositoryMock
-                .Setup(temp => temp.GetAllPerson())
-                .ReturnsAsync(persons);
+            _personsRepositoryMock
+               .Setup(temp => temp.GetAllPerson())
+               .ReturnsAsync(persons);
 
             List<PersonResponse> person_response_list_expected = persons.Select(temp => temp.ToPersonResponse()).ToList();
 
@@ -193,7 +195,7 @@ namespace CRUDTests
         [Fact]
         //If the search text is empty and search by is "PersonName", it should return all persons
         public async Task GetFiltredPerson_EmptySearchText()
-           {
+        {
             //Arrange
             List<Person> persons = new List<Person>() {
              _fixture.Build<Person>()
@@ -263,5 +265,45 @@ namespace CRUDTests
 
         #endregion
 
+        #region GetSortedPerson
+
+        //When we sort based on PersonName in DESC, it should return persons list in descending on PersonName
+        [Fact]
+        public async Task GetSortedPersons_ToBeSuccessful()
+        {
+            //Arrange
+            List<Person> persons = new List<Person>() {
+             _fixture.Build<Person>()
+             .With(temp => temp.Email, "someone_1@example.com")
+             .With(temp => temp.Country, null as Country)
+             .Create(),
+
+             _fixture.Build<Person>()
+             .With(temp => temp.Email, "someone_2@example.com")
+             .With(temp => temp.Country, null as Country)
+             .Create(),
+
+             _fixture.Build<Person>()
+             .With(temp => temp.Email, "someone_3@example.com")
+             .With(temp => temp.Country, null as Country)
+             .Create()
+
+             };
+
+            List<PersonResponse?> person_list_exepted = persons.Select(temp => temp.ToPersonResponse()).ToList();
+
+            _personsRepositoryMock
+            .Setup(temp => temp.GetAllPerson())
+            .ReturnsAsync(persons);
+
+            //Act
+            List<PersonResponse> allPersons = await _personsService.GetAllPersons();
+
+
+            List<PersonResponse> persons_list_from_sort = await _personsService.GetSortedPersons(allPersons, nameof(Person.PersonName), SortOrderOptions.DESC);
+            #endregion
+
+            persons_list_from_sort.Should().BeInDescendingOrder(temp => temp.PersonName);
+        }
     }
 }

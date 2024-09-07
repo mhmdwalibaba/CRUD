@@ -1,11 +1,37 @@
 {
   "Version": 1,
-  "Hash": "1/ObjBFR8Iyrv4nTv7J3vvKTob4ldqNC8E/aiSezJHs=",
+  "Hash": "hjnlE/5cA/KzW2T3kRg+KfzDcn1O7ZqpNsQ8A6sDIqg=",
   "Source": "CRUD",
   "BasePath": "_content/CRUD",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "CRUD\\wwwroot",
+      "Source": "CRUD",
+      "ContentRoot": "C:\\Users\\MS\\Desktop\\CRUD\\CRUD\\wwwroot\\",
+      "BasePath": "_content/CRUD",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\MS\\Desktop\\CRUD\\CRUD\\wwwroot\\StyleSheet.css",
+      "SourceId": "CRUD",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\MS\\Desktop\\CRUD\\CRUD\\wwwroot\\",
+      "BasePath": "_content/CRUD",
+      "RelativePath": "StyleSheet.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\StyleSheet.css"
+    }
+  ]
 }

@@ -9,8 +9,12 @@
       "CRUD/1.0.0": {
         "dependencies": {
           "Entits": "1.0.0",
+          "IRepositoryContracts": "1.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.33",
-          "Microsoft.EntityFrameworkCore.Design": "6.0.33"
+          "Microsoft.EntityFrameworkCore.Design": "6.0.33",
+          "Repository": "1.0.0",
+          "ServiceContracts": "1.0.0",
+          "Services": "1.0.0"
         },
         "runtime": {
           "CRUD.dll": {}
@@ -1238,6 +1242,43 @@
         "runtime": {
           "Entits.dll": {}
         }
+      },
+      "IRepositoryContracts/1.0.0": {
+        "dependencies": {
+          "Entits": "1.0.0"
+        },
+        "runtime": {
+          "IRepositoryContracts.dll": {}
+        }
+      },
+      "Repository/1.0.0": {
+        "dependencies": {
+          "Entits": "1.0.0",
+          "IRepositoryContracts": "1.0.0",
+          "ServiceContracts": "1.0.0",
+          "Services": "1.0.0"
+        },
+        "runtime": {
+          "Repository.dll": {}
+        }
+      },
+      "ServiceContracts/1.0.0": {
+        "dependencies": {
+          "Entits": "1.0.0"
+        },
+        "runtime": {
+          "ServiceContracts.dll": {}
+        }
+      },
+      "Services/1.0.0": {
+        "dependencies": {
+          "Entits": "1.0.0",
+          "IRepositoryContracts": "1.0.0",
+          "ServiceContracts": "1.0.0"
+        },
+        "runtime": {
+          "Services.dll": {}
+        }
       }
     }
   },
@@ -2116,6 +2157,26 @@
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
     },
     "Entits/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "IRepositoryContracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Repository/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ServiceContracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
