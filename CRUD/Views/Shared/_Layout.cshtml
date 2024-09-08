@@ -12,6 +12,7 @@
             <div class="navbar-brand">CRUD DEMO</div>
             <ul>
                  <a href="~/persons/index">Persons</a>
+                 <a href="~/persons/create">Create Persons</a>
             </ul>
 
         </div>
@@ -19,5 +20,6 @@
             @RenderBody()
         </div>
     </div>
+    @RenderSection("scripts", required: false)
 </body>
 </html>
