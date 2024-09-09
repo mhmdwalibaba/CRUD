@@ -77,5 +77,55 @@ namespace CRUD.Controllers
 
             
         }
+
+        [HttpGet]
+        [Route("/persons/edit/{personID}")]
+
+        public async Task<IActionResult> Edit(Guid personID)
+        {
+            PersonResponse? personResponse =await _personsService.GetPersonByPersonID(personID);
+
+            if (personResponse == null)
+            {
+                return RedirectToAction("Index", "Persons");
+            }
+
+            PersonUpdateRequest personUpdateRequest = personResponse.ToPersonUpdateRequest();
+
+            List<CountryResponse?> countries= await _countriesService.GetAllCountries();
+
+            ViewBag.Countries = countries.Select(temp =>
+              new SelectListItem() { Text=temp.CountryName ,Value=temp.CountryID.ToString()});
+
+            return View(personUpdateRequest);
+        }
+
+        [HttpPost]
+        [Route("/persons/edit")]
+
+        public async Task<IActionResult> Edit(PersonUpdateRequest personUpdateRequest)
+        {
+            PersonResponse? personResponse = await _personsService.GetPersonByPersonID(personUpdateRequest.PersonID);
+
+            if (personResponse == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            if (ModelState.IsValid)
+            {
+                PersonResponse updatedPerson = await _personsService.UpdatePerson(personUpdateRequest);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                List<CountryResponse> countries = await _countriesService.GetAllCountries();
+                ViewBag.Countries = countries.Select(temp =>
+                new SelectListItem() { Text = temp.CountryName, Value = temp.CountryID.ToString() });
+
+                ViewBag.Errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                return View(personResponse.ToPersonUpdateRequest());
+            }
+        }
     }
 }

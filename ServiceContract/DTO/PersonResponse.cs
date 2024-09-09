@@ -54,7 +54,7 @@ namespace ServiceContracts.DTO
         }
 
 
-        public PersonUpdateRequest ToPersonUpdate()
+        public PersonUpdateRequest ToPersonUpdateRequest()
         {
             return new PersonUpdateRequest()
             {

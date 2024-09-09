@@ -81,6 +81,7 @@
                     {"ColumnName",nameof(PersonResponse.ReceiveNewsLetters)},
                     {"DisplayName","ReceiveNewsLetters"}
                 } )
+                <td></td>
             </tr>
            
         </thead>
@@ -95,6 +96,10 @@
                     <td>@person.Age</td>
                     <td>@person.Address</td>
                     <td>@person.ReceiveNewsLetters</td>
+                    <td>
+                        <a href="~/persons/delete/@person.PersonID" class="button-red-back">Delete</a>
+                        <a href="~/persons/edit/@person.PersonID" class="button-blue-back">Edit</a>
+                    </td>
                 </tr>
             }
         </tbody>

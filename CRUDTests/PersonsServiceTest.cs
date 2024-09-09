@@ -335,7 +335,7 @@ namespace CRUDTests
 
             PersonResponse person_response_from_add = person.ToPersonResponse();
 
-            PersonUpdateRequest personUpdateRequest = person_response_from_add.ToPersonUpdate();
+            PersonUpdateRequest personUpdateRequest = person_response_from_add.ToPersonUpdateRequest();
 
             var action = async () =>
              {
@@ -374,7 +374,7 @@ namespace CRUDTests
 
             PersonResponse person_response_expected = person.ToPersonResponse();
 
-            PersonUpdateRequest person_update_request = person_response_expected.ToPersonUpdate();
+            PersonUpdateRequest person_update_request = person_response_expected.ToPersonUpdateRequest();
 
 
             _personsRepositoryMock
