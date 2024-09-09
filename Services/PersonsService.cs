@@ -7,7 +7,8 @@ using ServiceContracts;
 using ServiceContracts.DTO;
 using IRepositoryContracts;
 using Entits;
-using ServiceContracts.Enum;
+using ServiceContracts.Enums;
+using Services.Helper;
 
 namespace Services
 {
@@ -141,6 +142,37 @@ namespace Services
             return sortedPersons;
 
         }
-    
+
+        public async Task<PersonResponse> UpdatePerson(PersonUpdateRequest? personUpdateRequest)
+        {
+            if(personUpdateRequest==null)
+                   throw new ArgumentNullException(nameof(personUpdateRequest));
+
+            //Validation
+            ValidationHelper.ModelValidation(personUpdateRequest);
+
+            //get matching person object to update
+            Person? matchingPerson = await _personsRepository.GetPersonByPersonID(personUpdateRequest.PersonID);
+            if (matchingPerson == null)
+            {
+                throw new ArgumentException(nameof(personUpdateRequest.PersonID));
+            }
+
+            matchingPerson.PersonName = personUpdateRequest.PersonName;
+            matchingPerson.Email = personUpdateRequest.Email;
+            matchingPerson.Address = personUpdateRequest.Address;
+            matchingPerson.DateOfBirth = personUpdateRequest.DateOfBirth;
+            matchingPerson.Gender = personUpdateRequest.Gender.ToString();
+            matchingPerson.CountryID = personUpdateRequest.CountryID.Value;
+            matchingPerson.ReceiveNewsLetters=personUpdateRequest.ReceiveNewsLetters;
+
+            await _personsRepository.UpdatePerosn(matchingPerson);
+
+            return matchingPerson.ToPersonResponse();
+
+
+            
+
+        }
     }
 }

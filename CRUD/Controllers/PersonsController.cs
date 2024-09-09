@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using ServiceContracts;
 using ServiceContracts.DTO;
-using ServiceContracts.Enum;
+using ServiceContracts.Enums;
 using Services;
 using Microsoft.AspNetCore.Mvc.Rendering;
 

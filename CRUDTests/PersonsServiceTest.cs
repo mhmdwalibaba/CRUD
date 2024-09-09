@@ -13,7 +13,7 @@ using ServiceContracts.DTO;
 using Xunit;
 using Entits;
 using IRepositoryContracts;
-using ServiceContracts.Enum;
+using ServiceContracts.Enums;
 
 namespace CRUDTests
 {
@@ -301,9 +301,100 @@ namespace CRUDTests
 
 
             List<PersonResponse> persons_list_from_sort = await _personsService.GetSortedPersons(allPersons, nameof(Person.PersonName), SortOrderOptions.DESC);
-            #endregion
 
             persons_list_from_sort.Should().BeInDescendingOrder(temp => temp.PersonName);
         }
+            #endregion
+
+       #region PersonUpdate
+       [Fact]
+        //When we supply null as PersonUpdateRequest, it should throw ArgumentNullException
+        public async Task PersonUpdate_nullPersonUpdate_ToBeArgumentExeption()
+        {
+                PersonUpdateRequest? person_update_request = null;
+
+                //Act
+                var action = async () =>
+                {
+                    await _personsService.UpdatePerson(person_update_request);
+                };
+
+                //Assert
+                await action.Should().ThrowAsync<ArgumentNullException>();
+        }
+        [Fact]
+       // when Person name is null, it should throw ArgumentException
+        public async Task PersonUpdate_PersonNameNull_ToBeArgumentException()
+        {
+           Person person = _fixture.Build<Person>()
+                 .With(temp => temp.PersonName, null as string)
+                 .With(temp => temp.Email, "someone@example.com")
+                 .With(temp => temp.Country, null as Country)
+                 .With(temp => temp.Gender, "Male")
+                 .Create();
+
+            PersonResponse person_response_from_add = person.ToPersonResponse();
+
+            PersonUpdateRequest personUpdateRequest = person_response_from_add.ToPersonUpdate();
+
+            var action = async () =>
+             {
+                 await _personsService.UpdatePerson(personUpdateRequest);
+             };
+
+            await action.Should().ThrowAsync<ArgumentException>();
+        }
+
+        //When we supply invalid person id, it should throw ArgumentException
+        [Fact]
+        public async Task UpdatePerson_InvalidPersonID_ToBeArgumentException()
+        {
+            //Arrange
+            PersonUpdateRequest? person_update_request = _fixture.Build<PersonUpdateRequest>()
+             .Create();
+
+            //Act
+            Func<Task> action = async () =>
+            {
+                await _personsService.UpdatePerson(person_update_request);
+            };
+
+            //Assert
+            await action.Should().ThrowAsync<ArgumentException>();
+        }
+        [Fact]
+        //When we supply valid person id, it should update person
+        public async Task UpdatePerson_PersonFullDetails_ToBeSuccessful()
+        {
+            Person person = _fixture.Build<Person>()
+                .With(temp => temp.Email, "someone@example.com")
+                .With(temp => temp.Country, null as Country)
+                .With(temp => temp.Gender, "Male")
+                .Create();
+
+            PersonResponse person_response_expected = person.ToPersonResponse();
+
+            PersonUpdateRequest person_update_request = person_response_expected.ToPersonUpdate();
+
+
+            _personsRepositoryMock
+                .Setup(temp => temp.UpdatePerosn(It.IsAny<Person>()))
+                .ReturnsAsync(person);
+
+
+            _personsRepositoryMock
+                .Setup(temp => temp.GetPersonByPersonID(It.IsAny<Guid>()))
+                .ReturnsAsync(person);
+
+            //Act
+            PersonResponse person_response_from_update = await _personsService.UpdatePerson(person_update_request);
+
+            //Assert
+            person_response_from_update.Should().Be(person_response_expected);
+
+        }
+
+              #endregion
+
     }
 }

@@ -41,5 +41,25 @@ namespace Repository
         {
             return await _db.persons.Include("Country").FirstOrDefaultAsync(temp => temp.PersonID == personID);
         }
+
+        public async Task<Person> UpdatePerosn(Person person)
+        {
+            Person? matchingPerson = await _db.persons.FirstOrDefaultAsync(temp => temp.PersonID == person.PersonID);
+
+            if (matchingPerson == null)
+                return null;
+
+            matchingPerson.PersonName=person.PersonName;
+            matchingPerson.DateOfBirth = person.DateOfBirth;
+            matchingPerson.CountryID = person.CountryID;
+            matchingPerson.Email = person.Email;
+            matchingPerson.Address = person.Address;
+            matchingPerson.Gender = person.Gender;
+            matchingPerson.ReceiveNewsLetters = person.ReceiveNewsLetters;
+
+            int countUpdated = await _db.SaveChangesAsync();
+
+            return matchingPerson;
+        }
     }
 }

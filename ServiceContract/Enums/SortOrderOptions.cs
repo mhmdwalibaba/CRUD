@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceContracts.Enum
+namespace ServiceContracts.Enums
 {
-    public enum GenderOptions
+    public enum SortOrderOptions
     {
-        Male,FMale,Other
+        ASC, DESC
     }
 }

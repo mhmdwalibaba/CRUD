@@ -27,11 +27,19 @@ namespace IRepositoryContracts
         /// </summary>
         /// <returns>List of AllPersons Stored in DataStore</returns>
         Task<List<Person>?> GetAllPerson();
+
         /// <summary>
         /// Returns all person objects based on the given expression
         /// </summary>
         /// <param name="predicate">LINQ expression to check</param>
         /// <returns>All matching persons with given condition</returns>
         Task<List<Person>> GetFiltredPerson(Expression<Func<Person, bool>> predicate);
+
+        /// <summary>
+        /// retuen updated person and stor in database
+        /// </summary>
+        /// <param name="person"></param>
+        /// <returns>Updated person</returns>
+        Task<Person> UpdatePerosn(Person person);
     }
 }
