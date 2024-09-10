@@ -126,6 +126,33 @@ namespace CRUD.Controllers
                 ViewBag.Errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
                 return View(personResponse.ToPersonUpdateRequest());
             }
+
+        }
+
+        [HttpGet]
+        [Route("/persons/delete/{personID}")]
+        public async Task<IActionResult> Delete(Guid personID)
+        {
+
+            PersonResponse? personResposne = await _personsService.GetPersonByPersonID(personID);
+            if(personID==null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(personResposne);
+        }
+
+        [HttpPost]
+        [Route("/persons/delete/")]
+        public async Task<IActionResult> Delete(PersonUpdateRequest personUpdateResult)
+        {
+            PersonResponse? personResponse = await _personsService.GetPersonByPersonID(personUpdateResult.PersonID);
+            if (personResponse == null)
+                return RedirectToAction("Index");
+
+            await _personsService.DeletePerson(personUpdateResult.PersonID);
+            return RedirectToAction("Index");
+
         }
     }
 }

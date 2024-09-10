@@ -393,8 +393,40 @@ namespace CRUDTests
             person_response_from_update.Should().Be(person_response_expected);
 
         }
+        //When we supply invalid person id, it should return flase
+        [Fact]
+        public async Task DeletePerson_InvalidPersonID_toBeFalse()
+        {
+            bool isDeleted = await _personsService.DeletePerson(Guid.NewGuid());
 
-              #endregion
+            isDeleted.Should().BeFalse();
+        }
+        //When we supply valid Person Id,it should Return True
+        [Fact]
+        
+        public async Task DeletPerson_ValidPersonID_ToBeTrue()
+        {
+            Person? person = _fixture.Build<Person>()
+                    .With(temp => temp.Email, "someone@example.com")
+                    .With(temp => temp.Country, null as Country)
+                    .With(temp => temp.Gender, "Female")
+                    .Create();
+
+            _personsRepositoryMock
+              .Setup(temp => temp.DeletePersonByPersonID(It.IsAny<Guid>()))
+              .ReturnsAsync(true);
+
+            _personsRepositoryMock
+             .Setup(temp => temp.GetPersonByPersonID(It.IsAny<Guid>()))
+             .ReturnsAsync(person);
+
+            //Act
+            bool isDeleted = await _personsService.DeletePerson(person.PersonID);
+
+            //Assert
+            isDeleted.Should().BeTrue();
+        }
+        #endregion
 
     }
 }

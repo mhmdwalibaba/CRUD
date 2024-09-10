@@ -41,5 +41,11 @@ namespace IRepositoryContracts
         /// <param name="person"></param>
         /// <returns>Updated person</returns>
         Task<Person> UpdatePerosn(Person person);
+        /// <summary>
+        /// delete person in datastore with matching perosnid
+        /// </summary>
+        /// <param name="personId">personid</param>
+        /// <returns>if person deleted return true else return false</returns>
+        Task<bool> DeletePersonByPersonID(Guid personId);
     }
 }

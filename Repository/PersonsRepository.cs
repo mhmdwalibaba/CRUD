@@ -25,6 +25,14 @@ namespace Repository
             return person;
         }
 
+        public async Task<bool> DeletePersonByPersonID(Guid personId)
+        {
+            _db.persons.RemoveRange(_db.persons.Where(temp => temp.PersonID == personId));
+            int rowsDeleted = await _db.SaveChangesAsync();
+
+            return rowsDeleted > 0;
+        }
+
         public async Task<List<Person>?> GetAllPerson()
         {
             List<Person> persons = await _db.persons.Include("Country").ToListAsync();
