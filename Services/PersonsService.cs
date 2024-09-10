@@ -43,6 +43,23 @@ namespace Services
             return person.ToPersonResponse();
         }
 
+        public async Task<bool> DeletePerson(Guid? personID)
+        {
+            if(personID==null)
+            {
+                throw new ArgumentNullException(nameof(personID));
+            }
+
+           Person? person=await _personsRepository.GetPersonByPersonID(personID);
+            if (person == null)
+                return false;
+
+            await _personsRepository.DeletePersonByPersonID(person.PersonID);
+
+            return true;
+
+        }
+
         public async Task<List<PersonResponse>?> GetAllPersons()
         {
             List<Person>? persons = await _personsRepository.GetAllPerson();
@@ -53,7 +70,7 @@ namespace Services
 
         public async Task<List<PersonResponse>?> GetFiltredPerson(string? searchBy, string? searchString)
         {
-            List<Person> persons = searchBy switch
+            List<Person>? persons = searchBy switch
             {
                 nameof(PersonResponse.PersonName) =>
                 await _personsRepository

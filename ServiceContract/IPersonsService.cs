@@ -46,7 +46,20 @@ namespace ServiceContracts
         /// <param name="sortOrder">ASC or DESC</param>
         /// <returns>Returns sorted persons as PersonResponse list</returns>
         Task<List<PersonResponse>> GetSortedPersons(List<PersonResponse> allPersons, string sortBy, SortOrderOptions sortOrder);
+
+        /// <summary>
+        /// update perosn and return resposne
+        /// </summary>
+        /// <param name="personUpdateRequest">object for updateRequest</param>
+        /// <returns>retrun updated persons in data stpre</returns>
         Task<PersonResponse> UpdatePerson(PersonUpdateRequest? personUpdateRequest);
+
+        /// <summary>
+        /// retrun true when object deleted success in Data store
+        /// </summary>
+        /// <param name="personID">Id Person</param>
+        /// <returns>boolean true or false</returns>
+        Task<bool> DeletePerson(Guid? personID);
 
     }
 }
